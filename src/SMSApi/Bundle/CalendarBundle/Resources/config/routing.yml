@@ -1,0 +1,3 @@
+sms_api_calendar_homepage:
+    path:     /hello
+    defaults: { _controller: SMSApiCalendarBundle:Default:index }

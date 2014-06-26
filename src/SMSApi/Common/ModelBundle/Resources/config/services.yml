@@ -1,0 +1,7 @@
+parameters:
+#    sms_api_common_model.example.class: SMSApi\Common\ModelBundle\Example
+
+services:
+#    sms_api_common_model.example:
+#        class: %sms_api_common_model.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

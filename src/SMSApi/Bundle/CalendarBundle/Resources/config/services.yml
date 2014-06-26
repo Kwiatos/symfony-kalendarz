@@ -1,0 +1,16 @@
+parameters:
+#    sms_api_calendar.example.class: SMSApi\Bundle\CalendarBundle\Example
+
+services:
+# Repositories
+    sms_api_calendar.repository.newsletter:
+        class: SMSApi\Common\ModelBundle\Repository\BaseDoctrineEntityRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: [ SMSApi\Bundle\CalendarBundle\Entity\EventEntity ]
+
+# Models
+    sms_api_calendar.model.event:
+        class: SMSApi\Bundle\CalendarBundle\Model\EventModel
+        calls:
+            - [setRepository, [@sms_api_calendar.repository.newsletter]]
