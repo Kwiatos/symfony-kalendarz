@@ -1,0 +1,3 @@
+sms_api_common_layout_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SMSApiCommonLayoutBundle:Default:index }

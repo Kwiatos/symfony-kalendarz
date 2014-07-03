@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use SMSApi\Bundle\CalendarBundle\Entity\EventEntity;
 
-class DefaultController extends Controller
+class CalendarDisplayController extends Controller
 {
     public function indexAction()
     {
@@ -22,8 +22,8 @@ class DefaultController extends Controller
     	$start = new \DateTime("2014-06-26 08:00:00");
     	$stop = new \DateTime("2014-06-27 08:00:00");
     	$result = $model->getEventsBetweenDates($start, $stop);
-    	var_dump($result);exit;
+    	//var_dump($result);exit;
 
-        return $this->render('SMSApiCalendarBundle:Default:index.html.twig', array('name' => 'dupa'));
+        return $this->render('SMSApiCalendarBundle:CalendarDisplay:index.html.twig', array('name' => 'dupa'));
     }
 }

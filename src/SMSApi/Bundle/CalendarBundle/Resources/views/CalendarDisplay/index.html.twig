@@ -1,0 +1,103 @@
+{% extends "SMSApiCommonLayoutBundle:Default:layout.html.twig" %}
+
+{% block block_javascript %}
+	{{ parent() }}
+
+	{% javascripts
+	    '@SMSApiCalendarBundle/Resources/public/lib/fullcalendar-2.0.2/fullcalendar.min.js'
+	    %}
+	    <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+{% block block_css %}
+	{{ parent() }}
+
+	{% stylesheets
+		'bundles/smsapicalendar/lib/fullcalendar-2.0.2/fullcalendar.css'
+	filter='cssrewrite' %}
+	    <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+
+{% endblock %}
+
+{% block content %}
+	Hello {{ name }}!
+
+
+<script>
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+
+			defaultDate: '2014-06-12',
+			editable: true,
+			dayClick: function() {
+		        alert('a day has been clicked!');
+		    },
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2014-06-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2014-06-07',
+					end: '2014-06-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2014-06-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2014-06-16T16:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2014-06-12T10:30:00',
+					end: '2014-06-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2014-06-12T12:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2014-06-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2014-06-28'
+				}
+			]
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		width: 900px;
+		margin: 40px auto;
+	}
+
+</style>
+
+<div id='calendar'></div>
+
+
+
+{% endblock %}
