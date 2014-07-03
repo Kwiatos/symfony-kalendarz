@@ -22,17 +22,23 @@ class EventModel extends BaseDoctrineEntityModel {
 					$q->expr()->lte('item.dateStop', $q->expr()->literal($stop->format("Y-m-d H:i:s")))
 				),
 
-				// case at begin
+				// case on end
 				// --###[##---]---
 				$q->expr()->andX(
-					$q->expr()->gte('item.dateStart', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
-					$q->expr()->lte('item.dateStart', $q->expr()->literal($stop->format("Y-m-d H:i:s")))
+					$q->expr()->lte('item.dateStart', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
+					$q->expr()->gte('item.dateStop', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
+
+					$q->expr()->lte('item.dateStart', $q->expr()->literal($stop->format("Y-m-d H:i:s"))),
+					$q->expr()->lte('item.dateStop', $q->expr()->literal($stop->format("Y-m-d H:i:s")))
 				),
 
-				// case on end
+				// case at begin
 				// ---[---##]##---
 				$q->expr()->andX(
 					$q->expr()->gte('item.dateStart', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
+					$q->expr()->gte('item.dateStop', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
+
+					$q->expr()->lte('item.dateStart', $q->expr()->literal($stop->format("Y-m-d H:i:s"))),
 					$q->expr()->gte('item.dateStop', $q->expr()->literal($stop->format("Y-m-d H:i:s")))
 				),
 
@@ -41,7 +47,7 @@ class EventModel extends BaseDoctrineEntityModel {
 				$q->expr()->andX(
 					$q->expr()->lte('item.dateStart', $q->expr()->literal($start->format("Y-m-d H:i:s"))),
 					$q->expr()->gte('item.dateStop', $q->expr()->literal($stop->format("Y-m-d H:i:s")))
-				),
+				)
 			)
 		);
 
